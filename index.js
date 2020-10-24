@@ -30,7 +30,7 @@ function getParkResults(query, maxResults=10){
             return response.json();
         }        
     })
-    .then(response => renderParkResults(response.message))
+    .then(response => renderParkResults(response.data))
     .catch(err =>alert(err));    
 }
 
@@ -39,7 +39,7 @@ function renderParkResults(parkList){
     $('#results').text("Check your search result below:");
     parkList.forEach(item =>{
     $('#results-list').append(`<li><h3>${item.fullName}</h3>
-    <p>${item.description}</p><img src=${item.url}</li>`)
+    <p>${item.description}</p><a href=${item.url}></a></li>`)
     });
 }
 
