@@ -2,7 +2,7 @@ const apiKey = "kSKFJRm1oQyKlvLhETSmThg6zQVDeYpGjcwJDoJd";
 const searchURL="https://api.nps.gov/api/v1/parks";
 
 function submitForm(){
-    $('#parkForm').submit((e)=>{
+    $('#parkForm').submit(e => {
       e.preventDefault();
       const userInput = $('#state-name-input').val();
       const numResults = $('#max-results-input').val();
@@ -37,7 +37,8 @@ function getParkResults(query, maxResults=10){
 function renderParkResults(parkList){
     $('#results-list').html("");
     $('#results').text("Check your search result below:");
-    parkList.forEach(item =>{$('#results-list').append(`<li><h3>${item.fullName}</h3>
+    parkList.forEach(item =>{
+    $('#results-list').append(`<li><h3>${item.fullName}</h3>
     <p>${item.description}</p><img src=${item.url}</li>`)
     });
 }
