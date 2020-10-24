@@ -22,7 +22,7 @@ function getParkResults(query, maxResults=10){
       maxResults
   };
   const queryString = formatQueryParams(params)
-  const url = searchURL + '?' + queryString
+  const url = searchURL + '?' + queryString + '&fields=addresses'
     
   fetch(url)
     .then(response =>{
