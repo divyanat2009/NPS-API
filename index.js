@@ -39,7 +39,7 @@ function renderParkResults(parkList){
     $('#results').text("Check your search result below:");
     parkList.forEach(item =>{
     $('#results-list').append(`<li><h3>${item.fullName}</h3>
-    <p>${item.description}</p><a href=${item.url}></a></li>`)
+    <p>${item.description}</p><a href=${item.url}>Park's Website</a></li>`)
     });
 }
 
