@@ -1,3 +1,5 @@
+"use strict";
+
 const apiKey = "kSKFJRm1oQyKlvLhETSmThg6zQVDeYpGjcwJDoJd";
 const searchURL="https://api.nps.gov/api/v1/parks";
 
@@ -25,28 +27,19 @@ function getParkResults(query, maxResults=10){
   const url = searchURL + '?' + queryString;  
     
   fetch(url)
-    .then(response =>{
-        if (response.ok){
-            return response.json();
-        }        
-    })
+    .then(response =>response.json())
     .then(response => renderParkResults(response.data))
     .catch(err =>alert(err));    
 }
 //Render the GET Request results to the DOM
 function renderParkResults(parkList){      
-  $('#results-list').html("");
+  $('#results-list').empty();
   $('#results').text("Check your search result below:");
   parkList.forEach(item =>{
   $('#results-list').append(`<li><h3>${item.fullName}</h3>
   <p>${item.description}</p><a href=${item.url}>Park's Website</a><div id="addresses"><h5>${item.addresses[0].type}:</h5><p class="addresses">${item.addresses[0].line1}</p><p class="addresses">${item.addresses[0].line2}</p><p class="addresses">${item.addresses[0].line3}</p>
   <p class="addresses">${item.addresses[0].city}, ${item.addresses[0].stateCode}, ${item.addresses[0].postalCode}</p></div></li>`)
-console.log(results-list)
 });
 }
 
-function init(){
-  submitForm();
-}
-
-$(init);
+$(submitForm);
