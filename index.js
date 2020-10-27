@@ -6,7 +6,11 @@ const searchURL="https://api.nps.gov/api/v1/parks";
 function submitForm(){
   $('#parkForm').submit(e => {
     e.preventDefault();
-    const userInput = $('#state-name-input').val();
+    if(!/^\w(\s*,?\s*\w)*$/.test($("#state-name-input").val())){
+      alert("Invalid input");
+      return;
+    }
+    const userInput = $('#state-name-input').val().split(",");
     const numResults = $('#max-results-input').val();
     getParkResults(userInput, numResults);
   });
@@ -17,15 +21,15 @@ function formatQueryParams(params){
   return queryItems.join('&');
 }
 //GET Request to NPS API
-function getParkResults(query, maxResults=10){
+function getParkResults(query, maxResults){
   const params = {
     key: apiKey,
     stateCode: query,      
-    maxResults
+    limit: maxResults
   };
   const queryString = formatQueryParams(params);
   const url = searchURL + '?' + queryString;  
-    
+  console.log(url);  
   fetch(url)
     .then(response =>response.json())
     .then(response => renderParkResults(response.data))
